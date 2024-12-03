@@ -25,6 +25,7 @@ kubectl create namespace bitbucket-mirror
 echo "Creating SSL certificate secret..."
 kubectl create secret tls atl-cd-certificate --cert=/etc/ssl/cert.pem --key=/etc/ssl/key.pem --namespace bitbucket-mirror
 # Prompt for user input
+prompt IMAGE_TAG "Enter the version of bitbucket mirror you want to install"
 prompt UPSTREAM_URL "Enter the upstream URL in this format: https://<hostname>"
 prompt SETUP_BASEURL "Enter the SETUP_BASEURL in this format https://<hostname>"
 prompt INGRESS_HOST "Enter the Ingress Host, do not use https, just provide the hostname of the mirror server"
@@ -35,7 +36,7 @@ replicaCount: 1
 image:
   repository: atlassian/bitbucket
   pullPolicy: IfNotPresent
-  tag: "8.9.10"
+  tag: "${IMAGE_TAG}"
 bitbucket:
   mode: mirror
   displayName: Bitbucket Mirror Farm
