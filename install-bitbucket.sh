@@ -67,8 +67,8 @@ prompt INGRESS_HOST "Enter the Ingress Host"
 prompt READINESS_PROBE "Should readinessProbe be enabled (true/false)" "false"
 prompt Opensearch "Do you want to install standalone opensearch? (true/false)" "true"
 # Ask user if they want to use existing database details
-read -p "Do you want to use database details from deployment_details.txt? (yes/no) [no]: " use_existing_details
-use_existing_details=${use_existing_details:-no}
+read -p "Do you want to use database details from deployment_details.txt? (yes/no) [yes]: " use_existing_details
+use_existing_details=${use_existing_details:-yes}
 if [[ "$use_existing_details" == "yes" ]]; then
     read_database_details
 else
@@ -77,8 +77,8 @@ else
     prompt DATABASE_SECRET_NAME "Enter the database secret name" "bitbucket-database"
 fi
 # Ask user if they want to use existing NFS and volume details
-read -p "Do you want to use NFS and volume details from deployment_details.txt? (yes/no) [no]: " use_existing_nfs_details
-use_existing_nfs_details=${use_existing_nfs_details:-no}
+read -p "Do you want to use NFS and volume details from deployment_details.txt? (yes/no) [yes]: " use_existing_nfs_details
+use_existing_nfs_details=${use_existing_nfs_details:-yes}
 if [[ "$use_existing_nfs_details" == "yes" ]]; then
     read_nfs_and_volume_details
 else
